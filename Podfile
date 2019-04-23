@@ -7,6 +7,8 @@ target 'ShoppingApp' do
 
   # Pods for ShoppingApp
   pod 'Moltin', '~> 3.1.2'
+  pod 'AlamofireImage'
+  pod 'IHProgressHUD'
 
   target 'ShoppingAppTests' do
     inherit! :search_paths
