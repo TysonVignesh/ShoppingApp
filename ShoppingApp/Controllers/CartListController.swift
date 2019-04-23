@@ -23,11 +23,41 @@ class CartListController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.cartListTableView.tableFooterView = .init()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         viewInIt()
     }
     
+    func setUpMenuButton() {
+        let menuBtn = UIButton(type: .custom)
+        menuBtn.frame = CGRect(x: 0.0, y: 0.0, width: navigationController?.navigationBar.frame.height ?? 30, height: navigationController?.navigationBar.frame.height ?? 30)
+        menuBtn.setImage(UIImage(named:"BackWhite"), for: .normal)
+        menuBtn.addTarget(self, action: #selector(self.backAction), for: UIControl.Event.touchUpInside)
+        
+        let menuBarItem = UIBarButtonItem(customView: menuBtn)
+        
+        let checkoutButton = UIBarButtonItem.init(title: "Checkout", style: .plain, target: self, action: #selector(self.checkoutAction(_:)))
+        self.navigationItem.rightBarButtonItem = checkoutButton
+        
+        let currWidth = menuBarItem.customView?.widthAnchor.constraint(equalToConstant: navigationController?.navigationBar.frame.height ?? 30)
+        currWidth?.isActive = true
+        let currHeight = menuBarItem.customView?.heightAnchor.constraint(equalToConstant: navigationController?.navigationBar.frame.height ?? 30)
+        currHeight?.isActive = true
+        self.navigationItem.leftBarButtonItem = menuBarItem
+    }
+    
+    @IBAction func backAction() {
+        navigationController?.popViewController(animated: true)
+    }
+    
     private func viewInIt() {
+        self.navigationItem.setHidesBackButton(true, animated: true)
+        setUpMenuButton()
         navigationItem.title = "Cart"
+        self.products = nil
+        self.cartListTableView.reloadData()
         
         MoltinHelper.getCartList { (success, productList, error) in
             if success {
@@ -39,6 +69,13 @@ class CartListController: UIViewController {
             moltinInstance.cart.items(forCartID: cartID) { (result) in
                 debugPrint(result)
             }
+        }
+    }
+    
+    @objc func checkoutAction(_ sender: UIBarButtonItem) {
+        if let products = products, products.count > 0 {
+            let checkoutVC = self.storyboard?.instantiateViewController(withIdentifier: "CheckoutController")
+            self.navigationController?.pushViewController(checkoutVC!, animated: true)
         }
     }
 }

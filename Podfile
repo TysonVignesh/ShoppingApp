@@ -9,6 +9,7 @@ target 'ShoppingApp' do
   pod 'Moltin', '~> 3.1.2'
   pod 'AlamofireImage'
   pod 'IHProgressHUD'
+  pod 'IQKeyboardManager', '5.0.0'
 
   target 'ShoppingAppTests' do
     inherit! :search_paths

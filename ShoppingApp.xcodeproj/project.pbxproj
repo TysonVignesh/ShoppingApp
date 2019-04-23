@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		140E104B226EFAAD002617F9 /* CheckoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140E104A226EFAAD002617F9 /* CheckoutController.swift */; };
 		14D5CA68226DBC4700F67484 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D5CA67226DBC4700F67484 /* AppDelegate.swift */; };
 		14D5CA6A226DBC4700F67484 /* ProductListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D5CA69226DBC4700F67484 /* ProductListController.swift */; };
 		14D5CA6D226DBC4700F67484 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14D5CA6B226DBC4700F67484 /* Main.storyboard */; };
@@ -32,6 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		140E104A226EFAAD002617F9 /* CheckoutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutController.swift; sourceTree = "<group>"; };
 		14D5CA64226DBC4700F67484 /* ShoppingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShoppingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14D5CA67226DBC4700F67484 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14D5CA69226DBC4700F67484 /* ProductListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListController.swift; sourceTree = "<group>"; };
@@ -74,6 +76,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		140E1047226EFA39002617F9 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				14D5CA69226DBC4700F67484 /* ProductListController.swift */,
+				14D5CA8D226DEFE700F67484 /* CartListController.swift */,
+				140E104A226EFAAD002617F9 /* CheckoutController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		140E1048226EFA57002617F9 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				14D5CA89226DDD2800F67484 /* ProductListCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		140E1049226EFA78002617F9 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				14D5CA87226DCF8C00F67484 /* MoltinHelper.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		14D5CA5B226DBC4700F67484 = {
 			isa = PBXGroup;
 			children = (
@@ -98,10 +126,9 @@
 			isa = PBXGroup;
 			children = (
 				14D5CA67226DBC4700F67484 /* AppDelegate.swift */,
-				14D5CA69226DBC4700F67484 /* ProductListController.swift */,
-				14D5CA8D226DEFE700F67484 /* CartListController.swift */,
-				14D5CA89226DDD2800F67484 /* ProductListCell.swift */,
-				14D5CA87226DCF8C00F67484 /* MoltinHelper.swift */,
+				140E1047226EFA39002617F9 /* Controllers */,
+				140E1048226EFA57002617F9 /* Cells */,
+				140E1049226EFA78002617F9 /* Helper */,
 				14D5CA8B226DE6C700F67484 /* Constants.swift */,
 				14D5CA6B226DBC4700F67484 /* Main.storyboard */,
 				14D5CA6E226DBC4C00F67484 /* Assets.xcassets */,
@@ -296,6 +323,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/IHProgressHUD/IHProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
 				"${BUILT_PRODUCTS_DIR}/Moltin/moltin.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -305,6 +333,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IHProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/moltin.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -324,6 +353,7 @@
 				14D5CA8A226DDD2800F67484 /* ProductListCell.swift in Sources */,
 				14D5CA8E226DEFE700F67484 /* CartListController.swift in Sources */,
 				14D5CA88226DCF8C00F67484 /* MoltinHelper.swift in Sources */,
+				140E104B226EFAAD002617F9 /* CheckoutController.swift in Sources */,
 				14D5CA68226DBC4700F67484 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
