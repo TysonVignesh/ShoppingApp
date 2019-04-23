@@ -27,6 +27,8 @@ class CartListController: UIViewController {
     }
     
     private func viewInIt() {
+        navigationItem.title = "Cart"
+        
         MoltinHelper.getCartList { (success, productList, error) in
             if success {
                 self.products = productList
@@ -51,7 +53,9 @@ extension CartListController: UITableViewDataSource {
             if let productCell = tableView.dequeueReusableCell(withIdentifier: "ProductListCell", for: indexPath) as? ProductListCell {
                 productCell.titleLabel.text = products[indexPath.row].name
                 productCell.descriptionLabel.text = products[indexPath.row].description
-                productCell.priceLabel.text = "$ " + String(products[indexPath.row].unitPrice.amount)
+                var price = "$ " + String(products[indexPath.row].unitPrice.amount)
+                price.insert(".", at: price.index(price.startIndex, offsetBy: price.count - 2))
+                productCell.priceLabel.text = price
                 return productCell
             }
         }
@@ -61,6 +65,21 @@ extension CartListController: UITableViewDataSource {
 }
 
 extension CartListController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            if let products = products {
+                moltinInstance.cart.removeItem(products[indexPath.row].id, fromCart: cartID!) { (item) in
+                    self.viewInIt()
+                    debugPrint(item)
+                }
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }

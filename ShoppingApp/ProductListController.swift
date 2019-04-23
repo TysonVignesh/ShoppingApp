@@ -53,7 +53,9 @@ extension ProductListController: UITableViewDataSource {
             if let productCell = tableView.dequeueReusableCell(withIdentifier: "ProductListCell", for: indexPath) as? ProductListCell {
                 productCell.titleLabel.text = products[indexPath.row].name
                 productCell.descriptionLabel.text = products[indexPath.row].description
-                productCell.priceLabel.text = "$ " + String(products[indexPath.row].price?.first?.amount ?? 0)
+                var price = "$ " + String(products[indexPath.row].price?.first?.amount ?? 0)
+                price.insert(".", at: price.index(price.startIndex, offsetBy: price.count - 2))
+                productCell.priceLabel.text = price
                 return productCell
             }
         }
@@ -68,10 +70,10 @@ extension ProductListController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
         let alertController = UIAlertController.init(title: "Add to cart", message: "Click add to include this product to your cart", preferredStyle: .alert)
         let okAction = UIAlertAction.init(title: "Add", style: .default) { (action) in
-            tableView.deselectRow(at: indexPath, animated: true)
-            
             if let cartID = cartID {
                 moltinInstance.cart.addProduct(withID: self.products![indexPath.row].id, ofQuantity: 1, toCart: cartID, completionHandler: { (result) in
                     debugPrint("Added product to cart \(result)")
